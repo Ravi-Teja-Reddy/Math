@@ -5,38 +5,30 @@ class Solution
         int reverse(int x)
         {
 
-            bool sign = false;
+            int max = INT_MAX;
 
-            long temp;
+            int min = INT_MIN;
 
-            if (x < 0)
+            int res = 0;
+           
+
+            while (x )
             {
-                sign = 1;
+                int digit = x % 10;
+                
+                if (res > max/10 || (res == max/10 && digit >= max % 10))
 
-                temp = -1 *(long) x;
-            }
-            else
-            {
-                temp = x;
-            }
-
-            long reverse = 0;
-
-            while (temp > 0)
-            {
-                int digit = temp % 10;
-
-                reverse = reverse *10 + digit;
-
-                if (reverse > INT_MAX)
                     return 0;
 
-                temp = temp / 10;
-            }
+                    if (res < min/10 || (res == min/10 && digit <= min % 10))
 
-            if (!sign)
-                return reverse;
-            else
-                return -1 * reverse;
-        }
-};
+                        return 0;
+
+                    res = res *10 + digit;
+
+                    x = x / 10;
+                }
+
+                return res;
+            }
+        };
